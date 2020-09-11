@@ -7,13 +7,23 @@ p_load("tidyverse", "beepr", "readxl", 'skimr', "data.table", "corrplot",
 grid_covar <- read_excel("D:/Rafael/Clipado/grid_covar.xlsx")
 grid_covar$id <- as.factor(grid_covar$id)
 grid_covar$cd_fito <- as.factor(grid_covar$cd_fito)
+grid_covar$textura<- as.factor(grid_covar$textura)
+grid_covar$legenda_su<- as.factor(grid_covar$legenda_su)
+grid_covar$relevo<- as.factor(grid_covar$relevo)
+grid_covar$ordem<- as.factor(grid_covar$ordem)
+grid_covar$subordem <- as.factor(grid_covar$subordem)
+grid_covar$forma<- as.factor(grid_covar$forma)
+grid_covar$provincia <- as.factor(grid_covar$provincia)
+grid_covar$sub_provin <- as.factor(grid_covar$sub_provin)
+grid_covar$era_period <- as.factor(grid_covar$era_period)
+grid_covar$nm_regiao <- as.factor(grid_covar$nm_regiao)
 
 #olhar dos dados
 skim(grid_covar)
 
 PCAshiny(var_num)
 
-#separar localização e base numérica
+#separar localizaÃ§Ã£o e base numÃ©rica
 ids <- grid_covar %>% select(id,lat,lon)
 var_num <- grid_covar %>% select(altitude, declividad, bio_01, bio_02, bio_03, bio_04, bio_05, bio_06,
                                  bio_07,bio_08,bio_09,bio_10,bio_11,bio_12,bio_13,bio_14,bio_15,bio_16,
@@ -24,21 +34,12 @@ var_mix$lat <- NULL
 var_mix$lon <- NULL
 var_mix$id <- NULL
 
-#selecionar as variáveis que vai usar na pca
+#selecionar as variÃ¡veis que vai usar na pca
 var_mix <- var_mix %>% select(altitude, declividad, bio_01, bio_02, bio_03, bio_04, bio_05, bio_06,
                                  bio_07,bio_08,bio_09,bio_10,bio_11,bio_12,bio_13,bio_14,bio_15,bio_16,
                                  bio_17,bio_18,bio_19,cd_fito,provincia,forma,ordem,relevo,legenda_su,textura)
 
-#transformar em fator
-var_mix$textura<- as.factor(var_mix$textura)
-var_mix$legenda_su<- as.factor(var_mix$legenda_su)
-var_mix$relevo<- as.factor(var_mix$relevo)
-var_mix$ordem<- as.factor(var_mix$ordem)
-var_mix$forma<- as.factor(var_mix$forma)
-var_mix$provincia <- as.factor(var_mix$provincia)
-
-
-#separar os numéricos e categóricos
+#separar os numÃ©ricos e categÃ³ricos
 split <- splitmix(var_mix)
 ## PCA-MIX
 res.pcamix <- PCAmix(X.quanti=split$X.quanti,  
