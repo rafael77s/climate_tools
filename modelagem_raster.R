@@ -58,7 +58,7 @@ val_amostras <- val_amostras[, -1]
 #Aqui removemos os NAs das classes subrepresentadas, isso Ã© opcional devido a natureza dos dados
 data_amostras <- data.frame(classvalue = amostras$c.vege_sab_wgs, val_amostras)
 data_amostras <- data_amostras %>%  
-  filter(data_amostras$classvalue == c("1","2","3","4","6","7","11"))
+  filter(data_amostras$classvalue %in% c("1","2","3","4","6","7","11"))
 
 data_amostras$classvalue <- as.factor(data_amostras$classvalue)
 
