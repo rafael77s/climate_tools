@@ -7,18 +7,8 @@ p_load("tidyverse", "beepr", "readxl", 'skimr', "data.table", "corrplot",
 
 #adicionar dados e transformar em fator
 grid_covar <- read_excel("D:/Rafael/Clipado/grid_covar.xlsx")
-grid_covar$id <- as.factor(grid_covar$id)
-grid_covar$cd_fito <- as.factor(grid_covar$cd_fito)
-grid_covar$textura<- as.factor(grid_covar$textura)
-grid_covar$legenda_su<- as.factor(grid_covar$legenda_su)
-grid_covar$relevo<- as.factor(grid_covar$relevo)
-grid_covar$ordem<- as.factor(grid_covar$ordem)
-grid_covar$subordem <- as.factor(grid_covar$subordem)
-grid_covar$forma<- as.factor(grid_covar$forma)
-grid_covar$provincia <- as.factor(grid_covar$provincia)
-grid_covar$sub_provin <- as.factor(grid_covar$sub_provin)
-grid_covar$era_period <- as.factor(grid_covar$era_period)
-grid_covar$nm_regiao <- as.factor(grid_covar$nm_regiao)
+cols <- c("id", "cd_fito", "textura","legenda_su", "relevo","ordem","subordem","forma","provincia","sub_provincia","era_period","nm_regiao")
+grid_covar[cols] <- lapply(grid_covar[cols], factor) 
 
 
 #olhar dos dados
