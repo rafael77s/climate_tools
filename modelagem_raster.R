@@ -16,7 +16,7 @@ raster_pred <- grids
 preditoras <- raster::stack(paste0("D:/Rafael/mestrado/finais_modelo/teste/", grids))
 
 #calcular a pca com o rasterStack; 
-#atenção para normalização; também é permitido adicionar o componente espacial
+#atenção para normalização; 
 #se quiser reduzir o tempo de proc utilizar samples;
 #utilizar o numero de variaveis para gerar os PC, pode se reduzir caso já conheça dos dados
 PCA_raster <- rasterPCA(preditoras, nSamples = NULL, nComp = nlayers(preditoras), 
